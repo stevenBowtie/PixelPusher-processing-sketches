@@ -35,6 +35,8 @@ class TestObserver implements Observer {
 
 TestObserver testObserver;
 int c = 0;
+boolean countDirection=false;
+int fr=0;
 
 void setup() {
   registry = new DeviceRegistry();
@@ -42,7 +44,7 @@ void setup() {
   registry.addObserver(testObserver);
   colorMode(HSB, 100);
   size(480, 64);
-  frameRate(300);
+  frameRate(650);
 }
 
 void draw() {
@@ -82,6 +84,11 @@ void draw() {
            }
           stripy++;
         }
-      }
+   ///* 
+    if(fr>500){countDirection=false;}
+    if(fr<20){countDirection=true;}
+    if(countDirection){fr++;}
+    else{fr--;}
+    frameRate(fr); //*/
+    }
 }
-

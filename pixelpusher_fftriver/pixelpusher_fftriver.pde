@@ -64,13 +64,14 @@ BeatDetect beatDetector;
 ControlFrame addControlFrame(String theName, int theWidth, int theHeight) {
   Frame f = new Frame(theName);
   ControlFrame p = new ControlFrame(this, theWidth, theHeight);
-  f.add(p);
-  p.init();
+  //p.init();
+  //f.add(p);
   f.setTitle(theName);
   f.setSize(p.w, p.h);
   f.setLocation(100, 100);
   f.setResizable(false);
   f.setVisible(true);
+  print("We made it");
   return p;
 }
 
@@ -90,9 +91,9 @@ public class ControlFrame extends PApplet {
 
   public void controlEvent(ControlEvent theEvent) {
     ready_to_go = false;
-    int mixerIndex = (int)theEvent.controller().value();
+    int mixerIndex = (int)theEvent.getController().getValue();
 
-    println("User chose " + theEvent.controller().label());
+    println("User chose " + theEvent.getController().getLabel());
     println("Using mixer info " + mixerInfo[mixerIndex].getName());
 
     Mixer mixer = AudioSystem.getMixer(mixerInfo[mixerIndex]);
@@ -157,7 +158,7 @@ public class ControlFrame extends PApplet {
 
 
 void setup() {
-  size(canvasW, canvasH);
+  size(800, 600);
   registry = new DeviceRegistry();
   testObserver = new TestObserver();
   registry.addObserver(testObserver);
@@ -242,4 +243,3 @@ void stop()
   jingle.close();
   super.stop();
 }
-

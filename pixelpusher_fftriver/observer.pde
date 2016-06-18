@@ -8,4 +8,3 @@ class TestObserver implements Observer {
     this.hasStrips = true;
   }
 };
-
